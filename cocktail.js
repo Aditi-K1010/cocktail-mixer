@@ -1,11 +1,11 @@
 JS:
 // Defining our menu items
 const menuItems = [
-    { id: 1, name: 'Mojito', price: 10 },
-    { id: 2, name: 'Cosmopolitan', price: 12 },
-    { id: 3, name: 'Old Fashioned', price: 15 },
-    { id: 4, name: 'Margarita', price: 11 },
-    { id: 5, name: 'Pina Colada', price: 13 }
+    { id: 1, name: 'Mojito', price: 10, count: 0 },
+    { id: 2, name: 'Cosmopolitan', price: 12, count: 0 },
+    { id: 3, name: 'Old Fashioned', price: 15, count: 0 },
+    { id: 4, name: 'Margarita', price: 11, count: 0 },
+    { id: 5, name: 'Pina Colada', price: 13, count: 0 }
 ];
 
 // Function to add a menu item to the cart
