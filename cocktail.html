@@ -24,7 +24,12 @@
                 </p>
             </div>
             <div class="c_right1">
-                <img src="brandy-old-fashioned.jpg"  alt="Old Fashioned" id="img1" onclick="menuItems.count1 ++">
+                <img src="brandy-old-fashioned.jpg"  alt="Old Fashioned" id="img1" onclick="old_fashioned.count++;
+                console.log(old_fashioned.count);
+                alert(`Added successfully`);
+                totalPrice=totalPrice+old_fashioned.price;
+                console.log(totalPrice);"
+                >
                 <h4 id="txt1">Old Fashioned</h4>
             </div>
         </section>
@@ -36,7 +41,11 @@
                 </p>
             </div>
             <div class="c_right2">
-                <img src="Cosmopolitan.jpg"  alt="Cosmopolitan" id="img2">
+                <img src="Cosmopolitan.jpg"  alt="Cosmopolitan" id="img2" onclick="cosmopolitan.count++;
+                console.log(cosmopolitan.count)
+                alert(`Added successfully`)
+                totalPrice=totalPrice+cosmopolitan.price;
+                console.log(totalPrice);">
                 <h4 id="txt2">Cosmopolitan</h4>
             </div>
         </section>
@@ -48,7 +57,11 @@
                 </p>
             </div>
             <div class="c_right3">
-                <img src="Margarita-1.jpg"  alt="Margarita" id="img3">
+                <img src="Margarita-1.jpg"  alt="Margarita" id="img3" onclick="margarita.count++;
+                console.log(margarita.count)
+                alert(`Added successfully`)
+                totalPrice=totalPrice+margarita.price;
+                console.log(totalPrice);">
                 <h4 id="txt3">Margarita</h4>
             </div>
         </section>
@@ -60,7 +73,12 @@
                 </p>
             </div>
             <div class="c_right4">
-                <img src="mojito.jpg"  alt="Mojito" id="img4">
+                <img src="mojito.jpg"  alt="Mojito" id="img4" 
+                onclick="mojito.count++;
+                console.log(mojito.count)
+                alert(`Added successfully`)
+                totalPrice=totalPrice+mojito.price;
+                console.log(totalPrice);">
                 <h4 id="txt4">Mojito</h4>
             </div>
         </section>
@@ -72,10 +90,16 @@
                 </p>
             </div>
             <div class="c_right5">
-                <img src="Pina_Colada.jpg"  alt="Pina Colada" id="img5">
+                <img src="Pina_Colada.jpg"  alt="Pina Colada" id="img5" onclick="pina_colado.count++;
+                console.log(pina_colado.count)
+                alert(`Added successfully`)
+                totalPrice=totalPrice+pina_colado.price;
+                console.log(totalPrice);">
                 <h4 id="txt5">Pina Colada</h4>
             </div>
         </section>
+        <button id="done" onclick="
+        final()">DONE</button>
         <div id="menu" class="list-group">
         </div>
 
@@ -83,7 +107,8 @@
         <div id="cart" class="list-group">
         </div>
         <h4 class="mt-3">Total: ₹<span id="total">0</span></h4>
-        <button type="button" class="btn btn-success">Pay Now</button>
+        <button type="button" class="btn btn-success
+        ">Pay Now</button>
     </div>
     <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
         aria-hidden="true">

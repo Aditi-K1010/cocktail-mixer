@@ -1,12 +1,33 @@
 JS:
 // Defining our menu items
-const menuItems = [
-    { id: 1, name: 'Mojito', price: 10, count1: 0 },
-    { id: 2, name: 'Cosmopolitan', price: 12, count2: 0 },
-    { id: 3, name: 'Old Fashioned', price: 15, count3: 0 },
-    { id: 4, name: 'Margarita', price: 11, count4: 0 },
-    { id: 5, name: 'Pina Colada', price: 13, count5: 0 }
-];
+console.log(`heyy`)
+class MenuItem {
+    constructor(id, name, price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.count = 0;
+    }
+
+    incrementCount() {
+        this.count++;
+    }
+
+    decrementCount() {
+        if (this.count > 0) {
+            this.count--;
+        }
+    }
+
+    resetCount() {
+        this.count = 0;
+    }
+}
+ old_fashioned = new MenuItem(1, 'Old Fashioned', 15);
+ cosmopolitan = new MenuItem(2, 'Cosmopolitan', 12);
+ mojito = new MenuItem(3, 'Mojito', 10);
+ margarita = new MenuItem(4, 'Margarita', 11);
+ pina_colado = new MenuItem(5, 'Pina Colada', 13);
 
 // Function to add a menu item to the cart
 function addToCart(itemId) {
@@ -14,19 +35,28 @@ function addToCart(itemId) {
     cart.push(cartItem);
     renderCart();
 }
-
+let totalPrice=0;
 let cart = [];
 
+//Function to show the total
+function final(){
+    alert(`
+    ${old_fashioned.name} : ${old_fashioned.count}
+    ${cosmopolitan.name} : ${cosmopolitan.count}
+    ${mojito.name} : ${mojito.count}
+    ${margarita.name} : ${margarita.count}
+    ${pina_colado.name} : ${pina_colado.count}
+    THE TOTAL PRICE TO BE PAID IS ${totalPrice}`)}
 // Function to render the menu items dynamically
 function renderMenu() {
     const menuElement = document.getElementById('menu');
-    menuItems.forEach(item => {
-        const itemElement = document.createElement('button');
-        itemElement.classList.add('list-group-item', 'list-group-item-action', 'menu-item');
-        itemElement.textContent = `${item.name} - $${item.price}`;
-        itemElement.onclick = () => addToCart(item.id);
-        menuElement.appendChild(itemElement);
-    });
+    // menuItems.forEach(item => {
+    //     const itemElement = document.createElement('button');
+    //     itemElement.classList.add('list-group-item', 'list-group-item-action', 'menu-item');
+    //     itemElement.textContent = `${item.name} - $${item.price}`;
+    //     itemElement.onclick = () => addToCart(item.id);
+    //     menuElement.appendChild(itemElement);
+    // });
 }
 
 // Function to render the cart and calculate the total
