@@ -1,127 +1,56 @@
-JS:
-// Defining our menu items
-console.log(`heyy`)
-class MenuItem {
-    constructor(id, name, price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.count = 0;
-    }
+document.querySelector('.btn-success').addEventListener('click', () => {
+    $('#paymentModal').modal('show');
+});
+const menuItems = [
+    { id: 1, name: 'Mojito', price: 149 },
+    { id: 2, name: 'Cosmopolitan', price: 129 },
+    { id: 3, name: 'Old Fashioned', price: 139 },
+    { id: 4, name: 'Margarita', price: 199 },
+    { id: 5, name: 'Pina Colada', price: 69 },
+    { id: 6, name: 'Beer with ice cube', price: 999 }
+];
 
-    incrementCount() {
-        this.count++;
-    }
 
-    decrementCount() {
-        if (this.count > 0) {
-            this.count--;
-        }
-    }
-
-    resetCount() {
-        this.count = 0;
-    }
-}
- old_fashioned = new MenuItem(1, 'Old Fashioned', 15);
- cosmopolitan = new MenuItem(2, 'Cosmopolitan', 12);
- mojito = new MenuItem(3, 'Mojito', 10);
- margarita = new MenuItem(4, 'Margarita', 11);
- pina_colado = new MenuItem(5, 'Pina Colada', 13);
-
-// Function to add a menu item to the cart
 function addToCart(itemId) {
     const cartItem = menuItems.find(item => item.id === itemId);
     cart.push(cartItem);
     renderCart();
 }
-let totalPrice=0;
+
 let cart = [];
 
-//Function to show the total
-function final(){
-    alert(`
-    ${old_fashioned.name} : ${old_fashioned.count}
-    ${cosmopolitan.name} : ${cosmopolitan.count}
-    ${mojito.name} : ${mojito.count}
-    ${margarita.name} : ${margarita.count}
-    ${pina_colado.name} : ${pina_colado.count}
-    THE TOTAL PRICE TO BE PAID IS ${totalPrice}`)}
-// Function to render the menu items dynamically
 function renderMenu() {
     const menuElement = document.getElementById('menu');
-    // menuItems.forEach(item => {
-    //     const itemElement = document.createElement('button');
-    //     itemElement.classList.add('list-group-item', 'list-group-item-action', 'menu-item');
-    //     itemElement.textContent = `${item.name} - $${item.price}`;
-    //     itemElement.onclick = () => addToCart(item.id);
-    //     menuElement.appendChild(itemElement);
-    // });
+    menuItems.forEach(item => {
+        const itemElement = document.createElement('button');
+        itemElement.classList.add('list-group-item', 'list-group-item-action', 'menu-item');
+        itemElement.textContent = `${item.name} - ₹${item.price}`;
+        itemElement.onclick = () => addToCart(item.id);
+        menuElement.appendChild(itemElement);
+    });
+}
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCart();
 }
 
-// Function to render the cart and calculate the total
 function renderCart() {
     const cartElement = document.getElementById('cart');
     const totalElement = document.getElementById('total');
-    cartElement.innerHTML = ''; // Clear the cart for re-render
+    cartElement.innerHTML = '';
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const itemElement = document.createElement('div');
         itemElement.classList.add('list-group-item');
-        itemElement.textContent = `${item.name} - $${item.price}`;
+        itemElement.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})" class="btn btn-danger btn-sm">Remove</button>`;
         cartElement.appendChild(itemElement);
 
         total += item.price;
     });
 
-    totalElement.textContent = total.toFixed(2); // Update the total price
+    totalElement.textContent = total.toFixed(2);
 }
-// document.querySelector('.btn-success').addEventListener('click', function () {
-//     if (window.PaymentRequest) {
-//         // Payment Request supported
-//         const supportedPaymentMethods = [{
-//             supportedMethods: ['basic-card'],
-//             data: {
-//                 supportedNetworks: ['visa', 'mastercard', 'amex', 'discover']
-//             }
-//         }];
-
-//         const paymentDetails = {
-//             total: {
-//                 label: 'Total',
-//                 amount: {
-//                     currency: 'USD',
-//                     value: '10.00'
-//                 }
-//             }
-//             // Additional details like shipping options, etc. can be added here
-//         };
-
-//         const options = {
-//             requestShipping: true, // Set to true if you need shipping address
-//             requestPayerEmail: true // Set to true if you need payer's email
-//         };
-
-//         const paymentRequest = new PaymentRequest(supportedPaymentMethods, paymentDetails, options);
-
-//         paymentRequest.show()
-//             .then(function (paymentResponse) {
-//                 // Handle payment success
-//                 // You may want to send the paymentResponse to your server for processing
-//                 console.log(paymentResponse);
-//             })
-//             .catch(function (error) {
-//                 // Handle payment failure
-//                 console.error(error);
-//             });
-//     } else {
-//         // Fallback to traditional checkout
-//         // Redirect the user to a checkout page
-//         window.location.href = '/checkout.html';
-//     }
-// });
-// Initializing the app
 document.addEventListener('DOMContentLoaded', () => {
     renderMenu();
 });
